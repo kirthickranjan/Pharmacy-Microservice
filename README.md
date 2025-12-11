@@ -49,22 +49,38 @@
         npm install
 
 **Running the Application:**
+
 **Start Services in Order**
+
 Terminal 1: Auth Service
-     -cd auth-service
-     -mvn spring-boot:run
+
+     cd auth-service
+     
+     mvn spring-boot:run
+     
 Terminal 2: Prescription Service
-     -cd prescription-service
-     -mvn spring-boot:run
+
+     cd prescription-service
+     
+     mvn spring-boot:run
+     
 Terminal 3: Stock Service
-     -cd stock-service
-     -mvn spring-boot:run
+
+     cd stock-service
+     
+     mvn spring-boot:run
+     
 Terminal 4: API Gateway
-     -cd api-gateway
-     -mvn spring-boot:run
+
+     cd api-gateway
+     
+     mvn spring-boot:run
+     
 Terminal 5: React Frontend
-     -cd pharmacy-frontend
-     -npm start
+
+     cd pharmacy-frontend
+     
+     npm start
 
 The Following API's used in the application are:
 1. http://localhost:8076/health → Auth Service
