@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org">
+<head>
+<title>[[${pageTitle}]]</title>
+<link rel="stylesheet" type="text/css"
+th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+
+</head>
+<body>
+<div class="container-fluid">
+<div class="text-center"style="background-color:black;color:white">
+<h2>[[${pageTitle}]]</h2>
+</div>
+<form th:action="@{/user/save}"method="post"th:object="${order}" style="max-width:500px;margin:0 auto;">
+<input type="hidden"th:field="*{id}">
+<div class="border border-secondary rounded p-3">
+<div class="form-group row">
+<label class="col-sm-4 col-form-label">Medicine name</label>
+<div class="col-sm-8">
+<input type="text"th:field="*{medicine_name}"class="form-control"required maxlength="20"></div></div>
+
+<div class="form-group row">
+<label class="col-sm-4 col-form-label">Quantity</label>
+<div class="col-sm-8">
+<input type="number"th:field="*{quantity}"class="form-control"required maxlength="20"></div></div>
+
+
+<div class="text-center">
+<button type="submit"class="btn btn-primary m-2">Save</button>
+<button type="button"class="btn btn-primary m-2" onclick="cancelForm()">Cancel</button>
+</div>
+
+</div>
+</form></div>
+
+<script type="text/javascript">
+function cancelForm()
+{
+	window.location="[[@{/product}]]";
+	}</script>
+	
+</body>
+</html>

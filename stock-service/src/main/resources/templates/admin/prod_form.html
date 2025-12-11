@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>product form</title>
+<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+<style>
+*{
+   margin: 0;
+   padding: 0;
+}
+h1{
+   background-color:lightblue;
+   color:white;
+   text-align: center;
+   padding: 1.5rem;
+   }
+   /* body{
+            background-image: url("https://www.wallpaperbetter.com/wallpaper/299/1012/884/chevrolet-camaro-classic-car-classic-ss-sunset-road-hd-1080P-wallpaper.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        } */
+      
+      
+
+        
+   </style>
+</head>
+<body>
+<h1>STOCK MANAGEMENT</h1>
+<div>
+
+<div class="text-center" style="background-color:white;"><h2>STOCK FORM</h2></div>
+<form th:action="@{/admin/prod/save}" method="post" th:object="${prod}" style="max-width:500px; margin:0 auto;">
+<input type="hidden" th:field="*{id}">
+<div class=" p-3 text-center" style="background-color:white;text-align:center;">
+
+<div class="grp">
+
+<div class="form-group row">
+<label class=" col-form-label">Medicine Name :</label>
+<div>
+<input type="text" th:field="*{medicine_name}" class="form-control" required maxlength="20" >
+</div>
+</div>
+
+</div>
+<div class="form-group row">
+<label class=" col-form-label">Quantity :</label>
+<div>
+<input type="text" th:field="*{quantity}" class="form-control" required  maxlength="10">
+</div>
+</div>
+</div>
+<div class="grp">
+
+<div class="form-group row">
+<label class=" col-form-label">Prize : </label><br>
+<div>
+<input type="text" th:field="*{prize}" class="form-control" required maxlength="20">
+</div>
+</div>
+<div class="form-group row">
+<label class=" col-form-label">Expiry Date :</label><br>
+<div>
+<input type="text" th:field="*{expiry_date}" class="form-control" required maxlength="20">
+</div>
+</div>
+
+<div class="save">
+<button type="submit" >Save</button>
+<button type="button" onclick="cancelForm()">Cancel</button>
+</div>
+</div>
+</div>
+</form>
+</div>
+
+<script type="text/javascript">
+function cancelForm()
+{
+	window.location="[[@{/view_product}]]";
+}
+
+</script>
+
+</body>
+</html>

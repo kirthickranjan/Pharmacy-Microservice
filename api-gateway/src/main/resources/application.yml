@@ -1,0 +1,60 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowed-origins: "http://localhost:3000"
+            allowed-methods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowed-headers: "*"
+            allow-credentials: true
+      routes:
+        # Authentication Service Routes
+        - id: auth-service
+          uri: http://localhost:8076
+          predicates:
+            - Path=/api/auth/**
+          filters:
+            - RewritePath=/api/auth/(?<segment>.*), /api/auth/${segment}
+
+        # Prescription Service Routes  
+        - id: prescription-service
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/prescriptions/**
+          filters:
+            - RewritePath=/api/prescriptions/(?<segment>.*), /api/v1/prescription/${segment}
+            - RewritePath=/api/prescriptions, /api/v1/prescription
+
+        # Stock Service - Products Routes
+        - id: stock-products-service
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/stocks/products/**
+          filters:
+            - RewritePath=/api/stocks/products/(?<segment>.*), /api/v1/products/${segment}
+            - RewritePath=/api/stocks/products, /api/v1/products
+
+        # Stock Service - Orders Routes
+        - id: stock-orders-service
+          uri: http://localhost:8082
+          predicates:
+            - Path=/api/stocks/orders/**
+          filters:
+            - RewritePath=/api/stocks/orders/(?<segment>.*), /api/v1/orders/${segment}
+            - RewritePath=/api/stocks/orders, /api/v1/orders
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty: DEBUG

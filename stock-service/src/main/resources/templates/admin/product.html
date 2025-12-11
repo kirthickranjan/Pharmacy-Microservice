@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Manage Products</title>
+<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+<style>
+     *{
+          margin: 0;
+          padding: 0;
+     }
+        h1{
+   background-color:skyblue;
+   color:white;
+   text-align: center;
+   padding: 1.2rem;
+   }
+   a{
+     color: black;
+     text-decoration: none;
+     padding: 0.5rem 1.2rem;
+     background-color: lightcyan;
+     margin-top:3rem;
+   }
+   a:hover{
+     text-decoration: none;
+     color: red;
+    
+   }
+        </style>
+</head>
+<body>
+<h1>STOCK MANAGEMENT</h1>
+<form><div class="container-fluid text-center">
+<div><h2>Customers List</h2></div>
+<div class="m-2">
+<a class="h3" th:href="@{/admin/prod/new}">Add New Medicines</a>
+</div>
+
+<div th:if="${message}" class="alert alert-success text-center">
+[[${message}]]
+</div>
+
+ <div>
+<table class="table table-striped table-hover">
+<thead class="thead-light">
+<tr>
+<th>S.no</th>
+<th>Medicine name</th>
+<th>Quantity</th>
+<th>Prize</th>
+<th>Expiry Date</th>
+</tr>
+</thead>
+<tbody th:each="prod:${listprod}">
+<tr>
+<td>[[${prod.id}]]</td>
+<td>[[${prod.medicine_name}]]</td>
+<td>[[${prod.quantity}]]</td>
+<td>[[${prod.prize}]]</td>
+<td>[[${prod.expiry_date}]]</td>
+<td><a class="h4" th:href="@{'/admin/prod/edit/' + ${prod.id}}">Edit</a>
+</td><td><a class="h4" th:href="@{'/admin/prod/delete/' + ${prod.id}}">Delete</a></td>
+<td>
+</tr>
+</tbody>
+</table>
+<a href="/logout">Logout</a>
+</div>
+</form>
+</body>
+</html>

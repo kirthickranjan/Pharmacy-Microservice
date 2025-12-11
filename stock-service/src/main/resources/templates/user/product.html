@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Manage Products</title>
+<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+
+</head>
+<body>
+<form><div class="container-fluid text-center">
+<div style="background-color:black;color:white"><h2>View Product List</h2></div>
+<div th:if="${message}" class="alert alert-success text-center">
+[[${message}]]
+</div>
+
+<div>
+<table class="table table-bordered">
+<thead class="thead-dark">
+<tr>
+<th>S.no</th>
+<th>Medicine name</th>
+<th>Quantity</th>
+<th>Prize</th>
+<th>Expiry Date</th>
+</tr>
+</thead>
+<tbody th:each="prod:${listprod}">
+<tr>
+<td>[[${prod.id}]]</td>
+<td>[[${prod.medicine_name}]]</td>
+<td>[[${prod.quantity}]]</td>
+<td>[[${prod.prize}]]</td>
+<td>[[${prod.expiry_date}]]</td>
+</tr>
+</tbody>
+</table>
+<a th:href="@{/user/order}">Order</a>
+</div>
+</div></form>
+</body>
+</html>

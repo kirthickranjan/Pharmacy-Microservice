@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout(content)">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+<style>
+        a:hover{
+            border: 2px solid white;
+            color: aqua;
+            background-color: lightsalmon;
+        }
+       body{
+        background-image: url("https://www.wallpaperflare.com/static/806/890/536/simple-background-blurred-colorful-yellow-background-wallpaper.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;}
+        </style>
+</head>
+
+<body >
+<center><h1>Bikes</h1></center>
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+  
+      <div class="col">
+        <div class="card" style="width:300px">
+          <a th:href="@{/user/order}">
+          <img src="https://qph.cf2.quoracdn.net/main-qimg-ad9dc382a2576b728a513d7d6486bd1c-lq"  class="card-img-top" alt="..."></a>
+          <div class="card-body">
+            <h5 class="card-title">RX 100</h5>
+            <h6>Rs.50000</h6>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col">
+        <div class="card" style="width:300px">
+          <a th:href="@{/user/order}">
+          <img src="https://www.cartoq.com/wp-content/uploads/2019/04/mini-bullet.jpg" class="card-img-top" alt="..."></a>
+          <div class="card-body">
+            <h5 class="card-title">Royal Enfield Mini Bullet</h5>
+            <h6>Rs.80000</h6>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col">
+        <div class="card" style="width:340px">
+          <a th:href="@{/user/order}">
+         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Motorcycle_BMW_f650_st_04.jpg/1280px-Motorcycle_BMW_f650_st_04.jpg" class="card-img-top" alt="..."></a>
+          <div class="card-body">
+            <h5 class="card-title">Hero-BMW Funduro 650</h5>
+            <h6>Rs.40000</h6>
+          </div>
+        </div>
+      </div>
+      
+       <div class="col">
+        <div class="card" style="width:300px">
+          <a th:href="@{/user/order}">
+          <img src="https://www.surfindia.com/automobile/gifs/yamaha-crux-back.jpg" class="card-img-top" alt="..."></a>
+          <div class="card-body">
+            <h5 class="card-title">Yamaha Crux</h5>
+            <h6>Rs.30000</h6>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col">
+        <div class="card" style="width:300px">
+          <a th:href="@{/user/order}">
+          <img src="https://bd.gaadicdn.com/processedimages/tvs/tvs-scooty/494X300/tvs-scooty5e9154e9eed96.jpg?imwidth=380&impolicy=resize" class="card-img-top" alt="..."></a>
+          <div class="card-body">
+            <h5 class="card-title">Scooty Pep</h5>
+            <h6>Rs.25000</h6>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col">
+        <div class="card" style="width:300px">
+          <a th:href="@{/user/order}">
+          <img src="https://images.carandbike.com/bike-images/large/tvs/xl-100/tvs-xl-100.jpg?v=16" class="card-img-top" alt="..."></a>
+          <div class="card-body">
+            <h5 class="card-title">XL 100</h5>
+            <h6>Rs.2000</h6>
+          </div>
+        </div>
+      </div>
+    
+  </div>
+  </div><br/><br/>
+  <center><h1>Cars</h1></center>
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-4 g-4">
+  
+      <div class="col">
+        <div class="card" style="width:300px">
+          <a th:href="@{/user/order}">
+          <img src="https://www.torquexpert.com/wp-content/uploads/2022/08/WhatsApp-Image-2022-08-04-at-10.53.04-AM-1.jpeg"  class="card-img-top" alt="..."></a>
+          <div class="card-body">
+            <h5 class="card-title">ALTO K10</h5>
+            <h6>Rs.200000</h6>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col">
+        <div class="card" style="width:300px">
+          <a th:href="@{/user/order}">
+          <img src="https://www.iloveindia.com/cars/pics/maruti-zen.jpg" class="card-img-top" alt="..."></a>
+          <div class="card-body">
+            <h5 class="card-title">Maruti Zen VXI</h5>
+            <h6>Rs.250000</h6>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col">
+        <div class="card" style="width:300px">
+          <a th:href="@{/user/order}">
+          <img src="https://imgd.aeplcdn.com/0x0/n/cw/ec/128413/scorpio-classic-exterior-right-front-three-quarter-45.jpeg?isig=0" class="card-img-top" alt="..."></a>
+          <div class="card-body">
+            <h5 class="card-title">Scorpio</h5>
+            <h6>Rs.100000</h6>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col">
+        <div class="card" style="width:340px">
+          <a th:href="@{/user/order}">
+         <img src="https://stimg.cardekho.com/images/car-images/large/Maruti/Maruti-Omni/1201/Maruti_Omni_FANTASY-BLACK_00000.jpg?impolicy=resize&imwidth=420" class="card-img-top" alt="..."></a>
+          <div class="card-body">
+            <h5 class="card-title">OMNI</h5>
+            <h6>Rs.700000</h6>
+          </div>
+        </div>
+      </div>
+      
+       <div class="col">
+        <div class="card" style="width:300px">
+          <a th:href="@{/user/order}">
+          <img src="https://images.news18.com/ibnlive/uploads/2014/04/ambassador-car-still-runs-for-a-few-leaders-in-race-to-ls-election_100414011414.jpg" class="card-img-top" alt="..."></a>
+          <div class="card-body">
+            <h5 class="card-title">Ambasedor</h5>
+            <h6>Rs.800000</h6>
+          </div>
+        </div>
+      </div>
+      
+      
+      
+      <div class="col">
+        <div class="card" style="width:300px">
+          <a th:href="@{/user/order}">
+          <img src="https://imgd.aeplcdn.com/664x374/cw/ec/37067/BMW-3-Series-Exterior-167583.jpg?wm=0&q=75" class="card-img-top" alt="..."></a>
+          <div class="card-body">
+            <h5 class="card-title">BMW</h5>
+            <h6>Rs.15000000</h6>
+          </div>
+        </div>
+      </div>
+    
+  </div>
+  </div>
+      </body>
+      </html>
