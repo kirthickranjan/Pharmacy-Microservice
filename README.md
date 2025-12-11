@@ -19,33 +19,34 @@
 **Setup the Service for each Services:**
 1. Auth Service (Port 8076)
    
-     cd auth-service
+        cd auth-service
    
-     mvn clean install
+        mvn clean install
    
 3. Prescription Service (Port 8081)
    
-     cd prescription-service
-   
-     mvn clean install
+        cd prescription-service
+      
+        mvn clean install
    
 5. Stock Service (Port 8082)
    
-     cd api-gateway
+        cd api-gateway
    
-     mvn clean install
+        mvn clean install
    
 4.API Gateway (Port 8080)
 
-     cd api-gateway
-     
-     mvn clean install
-     
+      cd api-gateway
+
+      mvn clean install
+   
+        
 5. React Frontend (Port 3000)
    
-     cd pharmacy-frontend
+        cd pharmacy-frontend
    
-     npm install
+        npm install
 
 **Running the Application:**
 **Start Services in Order**
