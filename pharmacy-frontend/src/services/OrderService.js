@@ -1,28 +1,33 @@
 import axios from 'axios';
 import authService from './AuthService';
 
-const API_URL = "http://localhost:8080/api/stocks/products";
+const API_URL = "http://localhost:8080/api/stocks/orders"; // ✅ Through Gateway
 
-class ProductService {
-    getAllProducts() {
-        return axios.get(API_URL, { headers: authService.getAuthHeader() });
+class OrderService {
+    createOrder(order) {
+        console.log('Creating order at:', API_URL);
+        return axios.post(API_URL, order, { 
+            headers: authService.getAuthHeader() 
+        });
     }
 
-    getProductById(id) {
-        return axios.get(`${API_URL}/${id}`, { headers: authService.getAuthHeader() });
+    getAllOrders() {
+        return axios.get(API_URL, { 
+            headers: authService.getAuthHeader() 
+        });
     }
 
-    createProduct(product) {
-        return axios.post(API_URL, product, { headers: authService.getAuthHeader() });
+    getMyOrders() {
+        return axios.get(`${API_URL}/my-orders`, { 
+            headers: authService.getAuthHeader() 
+        });
     }
 
-    updateProduct(id, product) {
-        return axios.put(`${API_URL}/${id}`, product, { headers: authService.getAuthHeader() });
-    }
-
-    deleteProduct(id) {
-        return axios.delete(`${API_URL}/${id}`, { headers: authService.getAuthHeader() });
+    getOrderById(id) {
+        return axios.get(`${API_URL}/${id}`, { 
+            headers: authService.getAuthHeader() 
+        });
     }
 }
 
-export default new ProductService();
+export default new OrderService();

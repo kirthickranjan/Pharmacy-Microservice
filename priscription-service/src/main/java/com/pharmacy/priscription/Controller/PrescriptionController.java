@@ -15,7 +15,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/prescription")
-@CrossOrigin(origins = "*")
 public class PrescriptionController {
 
     @Autowired

@@ -1,10 +1,10 @@
 import axios from 'axios';
-
-const API_URL = 'http://localhost:8076/api/auth/';
+const API_URL = 'http://localhost:8080/api/auth/';
 
 class AuthService {
     async login(email, password) {
         try {
+            console.log('Login request to:', API_URL + 'login');
             const response = await axios.post(API_URL + 'login', { 
                 email, 
                 password 
@@ -31,6 +31,7 @@ class AuthService {
 
     async register(user) {
         try {
+            console.log('Register request to:', API_URL + 'register');
             const response = await axios.post(API_URL + 'register', user);
             console.log('Register API response:', response.data);
             return response;
@@ -70,5 +71,5 @@ class AuthService {
         return this.getCurrentUser() !== null;
     }
 }
-    
+
 export default new AuthService();

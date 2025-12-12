@@ -21,7 +21,6 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class AuthController {
 
     @Autowired
@@ -45,7 +44,7 @@ public class AuthController {
             System.out.println("Email exists check: " + emailExists);
             
             if (emailExists) {
-                System.out.println("❌ Registration failed: Email already exists");
+                System.out.println("Registration failed: Email already exists");
                 Map<String, Object> response = new HashMap<>();
                 response.put("success", false);
                 response.put("message", "Email already exists");
@@ -68,7 +67,7 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
             
         } catch (Exception e) {
-            System.err.println("❌ Registration error: " + e.getMessage());
+            System.err.println("Registration error: " + e.getMessage());
             e.printStackTrace();
             
             Map<String, Object> response = new HashMap<>();
@@ -88,7 +87,7 @@ public class AuthController {
             // First check if user exists
             User existingUser = userService.findByEmail(loginRequest.getEmail());
             if (existingUser == null) {
-                System.out.println("❌ User not found in database");
+                System.out.println(" User not found in database");
                 Map<String, Object> response = new HashMap<>();
                 response.put("success", false);
                 response.put("message", "Invalid email or password");
@@ -128,14 +127,14 @@ public class AuthController {
             return ResponseEntity.ok(response);
             
         } catch (BadCredentialsException e) {
-            System.err.println("❌ Bad credentials - password does not match");
+            System.err.println(" Bad credentials - password does not match");
             Map<String, Object> response = new HashMap<>();
             response.put("success", false);
             response.put("message", "Invalid email or password");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
             
         } catch (Exception e) {
-            System.err.println("❌ Login error: " + e.getMessage());
+            System.err.println("Login error: " + e.getMessage());
             e.printStackTrace();
             
             Map<String, Object> response = new HashMap<>();
