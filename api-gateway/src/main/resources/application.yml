@@ -12,7 +12,10 @@ spring:
         add-to-simple-url-handler-mapping: true
         cors-configurations:
           '[/**]':
-            allowedOrigins: "http://localhost:3000"
+            allowedOrigins: 
+              - "http://localhost:3000"
+              - "http://44.204.105.142:3000"  # Add your EC2 IP
+              - "http://44.204.105.142"
             allowedMethods:
               - GET
               - POST
@@ -28,7 +31,6 @@ spring:
           uri: http://localhost:8076
           predicates:
             - Path=/api/auth/**
-          
 
         # Prescription Service - List
         - id: prescription-list
