@@ -1,3 +1,5 @@
-FROM openjdk:8
-ADD target/*.jar secapp.jar
-ENTRYPOINT ["java","-jar","secapp.jar"]
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY target/*.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-Xmx256m", "-jar", "app.jar"]

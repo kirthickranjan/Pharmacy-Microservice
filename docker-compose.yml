@@ -1,0 +1,108 @@
+version: '3.8'
+
+services:
+  # Auth Service
+  auth-service:
+    build:
+      context: ./auth-service
+      dockerfile: Dockerfile
+    container_name: pharmacy-auth
+    ports:
+      - "8076:8076"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://pharmacy-mysql-db.cwbqoykegvrk.us-east-1.rds.amazonaws.com:3306/user_mgmt
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
+    networks:
+      - pharmacy-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8076/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Prescription Service
+  prescription-service:
+    build:
+      context: ./prescription-service
+      dockerfile: Dockerfile
+    container_name: pharmacy-prescription
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://pharmacy-mysql-db.cwbqoykegvrk.us-east-1.rds.amazonaws.com:3306/prescription_db
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
+    networks:
+      - pharmacy-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8081/api/v1/prescription/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Stock Service
+  stock-service:
+    build:
+      context: ./stock-service
+      dockerfile: Dockerfile
+    container_name: pharmacy-stock
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://pharmacy-mysql-db.cwbqoykegvrk.us-east-1.rds.amazonaws.com:3306/stock_db
+      - SPRING_DATASOURCE_USERNAME=admin
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
+    networks:
+      - pharmacy-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8082/api/v1/products/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # API Gateway
+  api-gateway:
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    container_name: pharmacy-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - auth-service
+      - prescription-service
+      - stock-service
+    networks:
+      - pharmacy-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # React Frontend
+  frontend:
+    build:
+      context: ./pharmacy-frontend
+      dockerfile: Dockerfile
+    container_name: pharmacy-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api-gateway
+    networks:
+      - pharmacy-network
+    restart: unless-stopped
+
+networks:
+  pharmacy-network:
+    driver: bridge
