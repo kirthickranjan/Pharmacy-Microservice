@@ -14,8 +14,8 @@ spring:
           '[/**]':
             allowedOrigins: 
               - "http://localhost:3000"
-              - "http://44.204.105.142:3000"  # Add your EC2 IP
-              - "http://44.204.105.142"
+              - "http://13.216.206.49:3000"  # Add your EC2 IP
+              - "http://13.216.206.49"
             allowedMethods:
               - GET
               - POST
