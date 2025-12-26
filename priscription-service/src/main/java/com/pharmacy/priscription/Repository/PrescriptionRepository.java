@@ -10,4 +10,5 @@ public interface PrescriptionRepository extends JpaRepository<Prescription, Inte
     // Additional custom queries if needed
     List<Prescription> findByPatientName(String patientName);
     List<Prescription> findByProviderName(String providerName);
+    List<Prescription> findByUserEmail(String userEmail);
 }

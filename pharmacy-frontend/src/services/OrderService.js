@@ -28,6 +28,12 @@ class OrderService {
             headers: authService.getAuthHeader() 
         });
     }
+
+    updateOrderStatus(id, status) {
+        return axios.put(`${API_URL}/${id}/status`, { status }, { 
+            headers: authService.getAuthHeader() 
+        });
+    }
 }
 
 export default new OrderService();

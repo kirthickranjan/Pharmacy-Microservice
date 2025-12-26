@@ -12,6 +12,7 @@ class CreatePrescriptionComponent extends Component {
             dosage: '',
             followupDate: '',
             followupNotes: '',
+            userEmail: '',
             message: ''
         };
     }
@@ -29,7 +30,8 @@ class CreatePrescriptionComponent extends Component {
                         medicineName: prescription.medicineName,
                         dosage: prescription.dosage,
                         followupDate: prescription.followupDate,
-                        followupNotes: prescription.followupNotes
+                        followupNotes: prescription.followupNotes,
+                        userEmail: prescription.userEmail
                     });
                 })
                 .catch(err => {
@@ -52,7 +54,8 @@ class CreatePrescriptionComponent extends Component {
             medicineName: this.state.medicineName,
             dosage: this.state.dosage,
             followupDate: this.state.followupDate,
-            followupNotes: this.state.followupNotes
+            followupNotes: this.state.followupNotes,
+            userEmail: this.state.userEmail
         };
 
         if (this.state.prescriptionId === '_add') {
@@ -128,6 +131,18 @@ class CreatePrescriptionComponent extends Component {
                                         name="medicineName"
                                         className="form-control"
                                         value={this.state.medicineName}
+                                        onChange={this.handleChange}
+                                        required
+                                    />
+                                </div>
+                                <div className="form-group">
+                                    <label>User Email:</label>
+                                    <input
+                                        type="email"
+                                        placeholder="User Email"
+                                        name="userEmail"
+                                        className="form-control"
+                                        value={this.state.userEmail}
                                         onChange={this.handleChange}
                                         required
                                     />

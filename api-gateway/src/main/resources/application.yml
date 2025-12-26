@@ -70,7 +70,7 @@ spring:
           filters:
             - RewritePath=/api/stocks/orders, /api/v1/orders
 
-        # Stock Service - Orders Detail
+        # Stock Service - Orders Detail and Status Update
         - id: orders-detail
           uri: http://localhost:8082
           predicates:

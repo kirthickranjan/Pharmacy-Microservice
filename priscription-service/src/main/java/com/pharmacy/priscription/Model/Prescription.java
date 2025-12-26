@@ -28,6 +28,9 @@ public class Prescription {
     
     @Column(name = "followup_notes", length = 500)
     private String followupNotes;
+    
+    @Column(name = "user_email")
+    private String userEmail;
 
     // Constructors
     public Prescription() {}
@@ -99,6 +102,14 @@ public class Prescription {
     public void setFollowupNotes(String followupNotes) {
         this.followupNotes = followupNotes;
     }
+    
+    public String getUserEmail() {
+        return userEmail;
+    }
+    
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -123,6 +134,7 @@ public class Prescription {
                 ", dosage='" + dosage + '\'' +
                 ", followupDate='" + followupDate + '\'' +
                 ", followupNotes='" + followupNotes + '\'' +
+                ", userEmail='" + userEmail + '\'' +
                 '}';
     }
 }

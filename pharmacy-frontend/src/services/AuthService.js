@@ -45,7 +45,12 @@ class AuthService {
         const userStr = localStorage.getItem('user');
         if (userStr) {
             try {
-                return JSON.parse(userStr);
+                const user = JSON.parse(userStr);
+                // Ensure email field exists
+                if (!user.email && user.username) {
+                    user.email = user.username;
+                }
+                return user;
             } catch (e) {
                 console.error('Error parsing user from localStorage:', e);
                 return null;

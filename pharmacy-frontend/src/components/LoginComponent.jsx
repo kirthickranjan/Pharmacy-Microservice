@@ -15,7 +15,7 @@ class LoginComponent extends Component {
     handleChange = (e) => {
         this.setState({ 
             [e.target.name]: e.target.value,
-            message: '' // Clear message on input change
+            message: '' 
         });
     }
 
@@ -31,7 +31,7 @@ class LoginComponent extends Component {
                 console.log('Login successful:', response);
                 console.log('User role:', response.role);
                 
-                // Redirect based on role
+                
                 if (response.role === 'ROLE_ADMIN') {
                     console.log('Redirecting to admin dashboard');
                     this.props.history.push('/admin');
@@ -57,7 +57,7 @@ class LoginComponent extends Component {
                 this.setState({ 
                     isLoading: false,
                     message: errorMessage,
-                    password: '' // Clear password on error
+                    password: '' 
                 });
             });
     }

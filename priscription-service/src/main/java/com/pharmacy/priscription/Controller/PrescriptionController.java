@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -20,18 +22,30 @@ public class PrescriptionController {
     @Autowired
     private PrescriptionRepository prescriptionRepo;
 
-    // Health check endpoint (public)
+
     @GetMapping("/health")
     public ResponseEntity<String> health() {
         return ResponseEntity.ok("Prescription Service is running on port 8081");
     }
 
-    // Get all prescriptions - Both Admin and User can view
+   
     @GetMapping
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<?> getAllPrescriptions() {
         try {
-            List<Prescription> prescriptions = prescriptionRepo.findAll();
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            String userEmail = auth.getName(); // Get the logged-in user's email
+            boolean isAdmin = auth.getAuthorities().stream()
+                    .anyMatch(grantedAuth -> grantedAuth.getAuthority().equals("ROLE_ADMIN"));
+            
+            List<Prescription> prescriptions;
+            if (isAdmin) {
+                
+                prescriptions = prescriptionRepo.findAll();
+            } else {
+                
+                prescriptions = prescriptionRepo.findByUserEmail(userEmail);
+            }
             return ResponseEntity.ok(prescriptions);
         } catch (Exception e) {
             Map<String, String> error = new HashMap<>();
@@ -41,7 +55,6 @@ public class PrescriptionController {
         }
     }
 
-    // Get prescription by ID - Both Admin and User can view
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     public ResponseEntity<?> getPrescriptionById(@PathVariable Integer id) {
@@ -82,6 +95,11 @@ public class PrescriptionController {
             if (prescription.getMedicineName() == null || prescription.getMedicineName().isEmpty()) {
                 Map<String, String> error = new HashMap<>();
                 error.put("error", "Medicine name is required");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+            }
+            if (prescription.getUserEmail() == null || prescription.getUserEmail().isEmpty()) {
+                Map<String, String> error = new HashMap<>();
+                error.put("error", "User email is required");
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
             }
 

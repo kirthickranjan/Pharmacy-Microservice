@@ -79,6 +79,25 @@ public class OrderController {
         }
     }
 
+    // Admin can update order status
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/{id}/status")
+    public ResponseEntity<Order> updateOrderStatus(@PathVariable Integer id, @RequestBody Order orderUpdate) {
+        try {
+            Optional<Order> existingOrder = orderRepo.findById(id);
+            
+            if (existingOrder.isPresent()) {
+                Order order = existingOrder.get();
+                order.setStatus(orderUpdate.getStatus());
+                Order updated = orderRepo.save(order);
+                return ResponseEntity.ok(updated);
+            }
+            return ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
     @GetMapping("/health")
     public ResponseEntity<String> health() {
         return ResponseEntity.ok("Stock Service (Orders) is running on port 8082");
