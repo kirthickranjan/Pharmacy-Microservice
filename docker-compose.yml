@@ -24,11 +24,11 @@ services:
       start_period: 40s
 
   # Prescription Service
-  prescription-service:
+  priscription-service:
     build:
-      context: ./prescription-service
+      context: ./priscription-service
       dockerfile: Dockerfile
-    container_name: pharmacy-prescription
+    container_name: pharmacy-priscription
     ports:
       - "8081:8081"
     environment:
@@ -77,7 +77,7 @@ services:
       - "8080:8080"
     depends_on:
       - auth-service
-      - prescription-service
+      - priscription-service
       - stock-service
     networks:
       - pharmacy-network
